@@ -21,7 +21,6 @@
 
         header {
             background: rgba(30,39,46,0.9);
-            backdrop-filter: blur(5px);
             color: white;
             text-align: center;
             padding: 40px 20px;
@@ -94,6 +93,22 @@
             margin-top: 10px;
             font-weight: 500;
         }
+        .call-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 22px;
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .call-btn:hover {
+            background: #1e8449;
+            transform: scale(1.05);
+        }
 
         footer {
             text-align: center;
@@ -126,6 +141,7 @@
         </p>
         <p class="location">📍 Xuan Truong, Da Lat, Lam Dong, Vietnam</p>
         <p class="location">📞 0969 930 775</p>
+        <a href="tel:0969930775" class="call-btn">📞 Call Us Now</a>
     </div>
 
     <div class="card">
