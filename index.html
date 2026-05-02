@@ -127,13 +127,13 @@ body{
     object-fit:cover;
     object-position:center;
     border-radius:12px;
-    cursor:pointer;
     transition:0.25s;
 }
 
 .gallery img:hover{
     transform:scale(1.05);
 }
+
 /* FOOTER */
 footer{
     text-align:center;
@@ -179,30 +179,9 @@ footer{
 
 </div>
 
-<div class="lightbox" id="lightbox">
-<img id="lightbox-img">
-</div>
-
 <footer>
 Development by DevBlzAlphaK1dXD
 </footer>
-
-<script>
-const images=document.querySelectorAll('.gallery img');
-const lightbox=document.getElementById('lightbox');
-const lightboxImg=document.getElementById('lightbox-img');
-
-images.forEach(img=>{
-img.addEventListener('click',()=>{
-lightbox.classList.add('active');
-lightboxImg.src=img.src;
-});
-});
-
-lightbox.addEventListener('click',()=>{
-lightbox.classList.remove('active');
-});
-</script>
 
 </body>
 </html>
