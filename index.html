@@ -15,7 +15,6 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 
-/* BODY */
 body{
     font-family:'Inter',sans-serif;
     overflow-x:hidden;
@@ -69,7 +68,7 @@ body::after{
     padding:40px 0 140px;
 }
 
-/* HERO */
+/* HERO (always white) */
 .hero{
     position:relative;
     height:640px;
@@ -99,7 +98,7 @@ body::after{
     max-width:680px;
 }
 
-/* 🔥 HERO LOCK WHITE (IMPORTANT) */
+/* 🔥 HERO LOCK */
 .hero h1,
 .hero p,
 .hero .tag{
@@ -220,7 +219,6 @@ body::after{
     font-size:32px;
     font-weight:800;
     letter-spacing:-1px;
-    line-height:1.4;
 }
 
 /* footer */
@@ -231,8 +229,14 @@ body::after{
 
 .footer a{
     text-decoration:none;
-    font-weight:600;
-    color:inherit;
+    font-weight:700;
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,0.3);
+    transition:.2s;
+}
+
+.footer a:hover{
+    opacity:0.7;
 }
 
 /* reveal */
@@ -249,7 +253,7 @@ body::after{
     filter:blur(0);
 }
 
-/* ===== LIGHT MODE SAFE (NO HERO TOUCH) ===== */
+/* ===== LIGHT MODE ===== */
 @media (prefers-color-scheme: light){
 
 body{
@@ -268,9 +272,14 @@ body{
     color:#000;
 }
 
-/* only darken overlay, DO NOT TOUCH TEXT */
 .hero::before{
     background:linear-gradient(to top, rgba(0,0,0,0.45), transparent 60%);
+}
+
+/* 🔥 FOOTER LINK FIX */
+.footer a{
+    color:#000 !important;
+    border-bottom:1px solid rgba(0,0,0,0.3);
 }
 }
 
@@ -346,7 +355,7 @@ body{
 
 <footer class="footer reveal">
     Development & Design by 
-    <a href="https://doanvanvien90.github.io/My-first-website" target="_blank">
+    <a href="https://doanvanvien90.github.io/My-first-website" target="_blank" rel="noopener noreferrer">
         DevBlzAlphaK1dXD
     </a>
 </footer>
