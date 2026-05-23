@@ -15,19 +15,7 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 
-:root{
-    --glass:rgba(255,255,255,0.06);
-    --stroke:rgba(255,255,255,0.10);
-    --text:#f5f7ff;
-    --muted:rgba(255,255,255,0.68);
-    --shadow:0 40px 120px rgba(0,0,0,0.6);
-    --radius:28px;
-}
-
-/* =======================
-   🌙 DARK MODE DEFAULT
-======================= */
-
+/* BODY */
 body{
     font-family:'Inter',sans-serif;
     overflow-x:hidden;
@@ -36,7 +24,7 @@ body{
     radial-gradient(900px 500px at 90% 20%, rgba(59,130,246,0.08), transparent),
     radial-gradient(800px 500px at 50% 100%, rgba(251,113,133,0.12), transparent),
     #03050a;
-    color:var(--text);
+    color:#fff;
 }
 
 /* noise */
@@ -58,7 +46,6 @@ body::after{
     right:0;
     height:220px;
     background:linear-gradient(to top,#03050a,transparent);
-    pointer-events:none;
 }
 
 /* lights */
@@ -67,14 +54,13 @@ body::after{
     width:520px;
     height:520px;
     filter:blur(180px);
-    opacity:.20;
+    opacity:.2;
     z-index:-1;
 }
-
 .l1{background:#22c55e;top:-160px;left:-140px;}
 .l2{background:#3b82f6;right:-200px;top:20%;}
 .l3{background:#a855f7;bottom:-220px;left:30%;}
-.l4{background:#fb7185;bottom:10%;right:10%;opacity:.22;}
+.l4{background:#fb7185;bottom:10%;right:10%;}
 
 /* container */
 .container{
@@ -113,17 +99,11 @@ body::after{
     max-width:680px;
 }
 
-.tag{
-    display:inline-block;
-    padding:10px 16px;
-    border-radius:999px;
-    font-size:12px;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    background:rgba(255,255,255,0.06);
-    border:1px solid var(--stroke);
-    backdrop-filter:blur(12px);
-    margin-bottom:16px;
+/* 🔥 HERO LOCK WHITE (IMPORTANT) */
+.hero h1,
+.hero p,
+.hero .tag{
+    color:#fff !important;
 }
 
 .hero h1{
@@ -135,8 +115,19 @@ body::after{
 
 .hero p{
     margin-top:14px;
-    color:var(--muted);
     line-height:1.8;
+    color:rgba(255,255,255,0.75) !important;
+}
+
+.tag{
+    display:inline-block;
+    padding:10px 16px;
+    border-radius:999px;
+    font-size:12px;
+    text-transform:uppercase;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    margin-bottom:16px;
 }
 
 /* GRID */
@@ -150,11 +141,17 @@ body::after{
 
 /* CARD */
 .card{
-    background:var(--glass);
-    border:1px solid var(--stroke);
-    border-radius:var(--radius);
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:28px;
     padding:30px;
-    box-shadow:var(--shadow);
+}
+
+.card h2{
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:-0.5px;
+    margin-bottom:12px;
 }
 
 /* chips */
@@ -171,7 +168,6 @@ body::after{
     font-size:12px;
     background:rgba(255,255,255,0.04);
     border:1px solid rgba(255,255,255,0.08);
-    color:rgba(255,255,255,0.75);
 }
 
 /* buttons */
@@ -187,27 +183,16 @@ body::after{
     text-decoration:none;
     font-size:13px;
     font-weight:600;
-    transition:.3s ease;
 }
 
-.btn:hover{transform:translateY(-3px);}
+.call{background:#16a34a;color:#fff;}
+.map{background:#0284c7;color:#fff;}
 
-.call{background:#16a34a;color:white;}
-.map{background:#0284c7;color:white;}
-
-/* =======================
-   🌟 GALLERY 5 IMAGES
-======================= */
-
-.gallery-card{
-    margin-bottom:60px;
-}
-
+/* gallery */
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
     gap:16px;
-    margin-top:10px;
 }
 
 .gallery img{
@@ -215,12 +200,11 @@ body::after{
     height:200px;
     object-fit:cover;
     border-radius:22px;
-    transition:.4s ease;
+    transition:.4s;
 }
 
 .gallery img:hover{
     transform:scale(1.05);
-    filter:brightness(1.05);
 }
 
 /* quote */
@@ -230,13 +214,13 @@ body::after{
     text-align:center;
     border-radius:32px;
     background:rgba(255,255,255,0.04);
-    border:1px solid rgba(255,255,255,0.08);
 }
 
-.quote p{
-    font-size:24px;
-    font-weight:500;
-    color:rgba(255,255,255,0.85);
+.quote-text{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:-1px;
+    line-height:1.4;
 }
 
 /* footer */
@@ -245,97 +229,54 @@ body::after{
     padding:90px 20px 40px;
 }
 
-.footer span{
+.footer a{
+    text-decoration:none;
     font-weight:600;
+    color:inherit;
 }
 
-/* =======================
-   🍎 APPLE SCROLL REVEAL
-======================= */
-
+/* reveal */
 .reveal{
     opacity:0;
     transform:translateY(90px) scale(0.96);
     filter:blur(16px);
     transition:all 1.2s cubic-bezier(.16,1,.3,1);
-    will-change:transform,opacity,filter;
-    pointer-events:none;
 }
 
 .reveal.show{
     opacity:1;
     transform:translateY(0) scale(1);
     filter:blur(0);
-    pointer-events:auto;
 }
 
-/* =======================
-   ☀️ LIGHT MODE — ALL BLACK FIX
-======================= */
-
+/* ===== LIGHT MODE SAFE (NO HERO TOUCH) ===== */
 @media (prefers-color-scheme: light){
 
 body{
-    background:#ffffff;
-    color:#000000;
+    background:#fff;
+    color:#000;
 }
 
-/* force ALL TEXT black */
-h1,h2,p,span{
-    color:#000000 !important;
+.card,.quote{
+    background:#fff;
+    border:1px solid rgba(0,0,0,0.18);
+    box-shadow:0 12px 35px rgba(0,0,0,0.06);
 }
 
-/* hero overlay */
-.hero::before{
-    background:linear-gradient(to top, rgba(0,0,0,0.25), transparent 60%);
-}
-
-/* cards */
-.card,
-.quote{
-    background:#ffffff;
-    border-color:rgba(0,0,0,0.08);
-}
-
-/* muted text override */
-.hero p,
-.card p{
-    color:#000000 !important;
-}
-
-/* chips */
 .chip{
     background:rgba(0,0,0,0.05);
-    color:#000000 !important;
-    border-color:rgba(0,0,0,0.1);
+    color:#000;
 }
 
-/* tag */
-.tag{
-    background:rgba(0,0,0,0.05);
-    color:#000000 !important;
-    border-color:rgba(0,0,0,0.15);
+/* only darken overlay, DO NOT TOUCH TEXT */
+.hero::before{
+    background:linear-gradient(to top, rgba(0,0,0,0.45), transparent 60%);
+}
 }
 
-/* buttons */
-.btn{
-    color:#000000;
-}
-
-.call,.map{
-    color:#ffffff;
-}
-
-/* footer */
-.footer span{
-    color:#000000 !important;
-}
-
-}
-
-/* MOBILE */
+/* mobile */
 @media(max-width:900px){
-    .grid{grid-template-columns:1fr; gap:30px;}
+    .grid{grid-template-columns:1fr;}
     .hero{height:480px;}
 }
 
@@ -351,20 +292,15 @@ h1,h2,p,span{
 
 <div class="container">
 
-<!-- HERO -->
 <section class="hero reveal">
     <img src="banner.png">
     <div class="hero-content">
         <div class="tag">Calm • Romantic • Nature</div>
         <h1>Lang Ben Suoi</h1>
-        <p>
-            Enjoy fresh air and go camping together —  
-            a peaceful retreat with other guests around.
-        </p>
+        <p>Enjoy fresh air and go camping together.</p>
     </div>
 </section>
 
-<!-- GRID -->
 <div class="grid">
 
 <div class="card reveal">
@@ -391,10 +327,8 @@ h1,h2,p,span{
 
 </div>
 
-<!-- GALLERY -->
-<div class="card reveal gallery-card">
+<div class="card reveal">
     <h2>Gallery</h2>
-
     <div class="gallery">
         <img src="anh1.PNG">
         <img src="anh2.PNG">
@@ -404,16 +338,17 @@ h1,h2,p,span{
     </div>
 </div>
 
-<!-- QUOTE -->
 <div class="quote reveal">
-    <p>“A quiet night, a soft breeze.”</p>
+    <p class="quote-text">“A quiet night, a soft breeze.”</p>
 </div>
 
 <div style="height:200px;"></div>
 
-<!-- FOOTER -->
 <footer class="footer reveal">
-    Development & Design by <span>DevBlzAlphaK1dXD</span>
+    Development & Design by 
+    <a href="https://doanvanvien90.github.io/My-first-website" target="_blank">
+        DevBlzAlphaK1dXD
+    </a>
 </footer>
 
 </div>
@@ -425,7 +360,7 @@ const observer = new IntersectionObserver((entries)=>{
             e.target.classList.add("show");
         }
     });
-},{threshold:0.18, rootMargin:"0px 0px -10% 0px"});
+},{threshold:0.18});
 
 document.querySelectorAll(".reveal").forEach(el=>{
     observer.observe(el);
