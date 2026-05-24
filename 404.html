@@ -1,380 +1,509 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Lang Ben Suoi | Hidden Forest Retreat, Da Lat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    html {
+      scroll-behavior: smooth;
+    }
 
-<title>Lang Ben Suoi</title>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+      background: #03050a;
+      color: #ffffff;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    /* noise & gradient layers */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjUiIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDYiLz48L3N2Zz4=');
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-<style>
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 240px;
+      background: linear-gradient(to top, #03050a 8%, transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
 
-/* RESET */
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+    /* floating light orbs */
+    .light-orb {
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.2;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .orb-1 { background: #22c55e; top: -180px; left: -120px; }
+    .orb-2 { background: #3b82f6; right: -140px; top: 18%; }
+    .orb-3 { background: #a855f7; bottom: -200px; left: 20%; opacity: 0.18; }
+    .orb-4 { background: #fb7185; bottom: 5%; right: 10%; opacity: 0.16; }
 
-body{
-    font-family:'Inter',sans-serif;
-    overflow-x:hidden;
-    background:
-    radial-gradient(1200px 600px at 10% 10%, rgba(34,197,94,0.08), transparent),
-    radial-gradient(900px 500px at 90% 20%, rgba(59,130,246,0.08), transparent),
-    radial-gradient(800px 500px at 50% 100%, rgba(251,113,133,0.12), transparent),
-    #03050a;
-    color:#fff;
-}
+    .container {
+      width: min(1140px, 92%);
+      margin: 0 auto;
+      padding: 32px 0 100px;
+      position: relative;
+      z-index: 3;
+    }
 
-/* noise */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:url("https://grainy-gradients.vercel.app/noise.svg");
-    opacity:.05;
-    pointer-events:none;
-}
+    /* HERO */
+    .hero {
+      position: relative;
+      height: min(70vh, 620px);
+      min-height: 480px;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 35px 60px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
 
-/* fade */
-body::after{
-    content:"";
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:220px;
-    background:linear-gradient(to top,#03050a,transparent);
-}
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .hero:hover .hero-img {
+      transform: scale(1.02);
+    }
 
-/* lights */
-.light{
-    position:fixed;
-    width:520px;
-    height:520px;
-    filter:blur(180px);
-    opacity:.2;
-    z-index:-1;
-}
-.l1{background:#22c55e;top:-160px;left:-140px;}
-.l2{background:#3b82f6;right:-200px;top:20%;}
-.l3{background:#a855f7;bottom:-220px;left:30%;}
-.l4{background:#fb7185;bottom:10%;right:10%;}
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 15%, rgba(0, 0, 0, 0.2) 55%, transparent);
+      z-index: 2;
+    }
 
-/* container */
-.container{
-    width:min(1100px,92%);
-    margin:auto;
-    padding:40px 0 140px;
-}
+    .hero-content {
+      position: absolute;
+      left: 2.5rem;
+      bottom: 2.2rem;
+      z-index: 4;
+      max-width: 680px;
+    }
 
-/* HERO (always white) */
-.hero{
-    position:relative;
-    height:640px;
-    border-radius:40px;
-    overflow:hidden;
-    box-shadow:0 40px 120px rgba(0,0,0,0.6);
-}
+    .hero h1 {
+      font-size: clamp(2.8rem, 9vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: white;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
 
-.hero img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transform:scale(1.08);
-}
+    .hero p {
+      margin-top: 12px;
+      font-size: 1.1rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.85);
+    }
 
-.hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to top, rgba(0,0,0,0.85), transparent 60%);
-}
+    .badge {
+      display: inline-flex;
+      padding: 0.5rem 1.2rem;
+      border-radius: 80px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border: 0.5px solid rgba(255, 255, 255, 0.25);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
 
-.hero-content{
-    position:absolute;
-    left:48px;
-    bottom:48px;
-    max-width:680px;
-}
+    /* 2 column layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin: 3rem 0 2.8rem;
+    }
 
-/* 🔥 HERO LOCK */
-.hero h1,
-.hero p,
-.hero .tag{
-    color:#fff !important;
-}
+    /* glassmorphism card */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      transition: all 0.3s;
+    }
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+    .glass-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+    .glass-card p {
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.5;
+    }
 
-.hero h1{
-    font-size:74px;
-    font-weight:800;
-    letter-spacing:-3px;
-    line-height:0.95;
-}
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.4rem;
+    }
+    .chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 0.5px solid rgba(255, 255, 255, 0.15);
+      padding: 0.4rem 1rem;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
 
-.hero p{
-    margin-top:14px;
-    line-height:1.8;
-    color:rgba(255,255,255,0.75) !important;
-}
+    /* buttons */
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.6rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.7rem 1.6rem;
+      border-radius: 3rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.25s;
+      background: rgba(255, 255, 255, 0.05);
+      border: 0.5px solid rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+    .btn-primary {
+      background: #16a34a;
+      border: none;
+      box-shadow: 0 8px 18px -6px rgba(22, 163, 74, 0.3);
+    }
+    .btn-secondary {
+      background: #0284c7;
+      border: none;
+      box-shadow: 0 8px 16px -8px rgba(2, 132, 199, 0.3);
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.05);
+    }
+    .btn:active { transform: scale(0.97); }
 
-.tag{
-    display:inline-block;
-    padding:10px 16px;
-    border-radius:999px;
-    font-size:12px;
-    text-transform:uppercase;
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.1);
-    margin-bottom:16px;
-}
+    /* gallery - exactly 5 images */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+    .gallery-item {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      cursor: pointer;
+      box-shadow: 0 12px 20px -15px rgba(0, 0, 0, 0.4);
+      background: #1a1c26;
+      transition: transform 0.25s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
 
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;
-    margin-top:60px;
-    margin-bottom:60px;
-}
+    /* quote section */
+    .quote-block {
+      margin: 3rem 0;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 2.5rem;
+      backdrop-filter: blur(6px);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
+    }
+    .quote-text {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #f0fdf4, #caf0e6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
 
-/* CARD */
-.card{
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.1);
-    border-radius:28px;
-    padding:30px;
-}
+    /* footer */
+    .footer {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+      margin-top: 2rem;
+    }
+    .footer a {
+      color: #b9f5d8;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(185, 245, 216, 0.4);
+    }
+    .footer a:hover {
+      color: white;
+    }
 
-.card h2{
-    font-size:20px;
-    font-weight:700;
-    letter-spacing:-0.5px;
-    margin-bottom:12px;
-}
+    /* reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-/* chips */
-.chips{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:18px;
-}
+    /* light mode */
+    @media (prefers-color-scheme: light) {
+      body { background: #fefef7; color: #111; }
+      body::after { background: linear-gradient(to top, #fefef7, transparent); }
+      .glass-card { background: rgba(255, 255, 255, 0.8); border-color: rgba(0,0,0,0.1); }
+      .glass-card p { color: #1f2a3e; }
+      .chip { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.1); color: #1e293b; }
+      .badge { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); color: #0c2e1a; }
+      .quote-block { background: rgba(0,0,0,0.02); }
+      .footer a { color: #0f4c2c; border-bottom-color: #0f4c2c; }
+      .btn-primary { background: #15803d; }
+      .btn-secondary { background: #0369a1; }
+      .btn { background: rgba(0,0,0,0.05); color: #111; }
+    }
 
-.chip{
-    padding:10px 14px;
-    border-radius:999px;
-    font-size:12px;
-    background:rgba(255,255,255,0.04);
-    border:1px solid rgba(255,255,255,0.08);
-}
-
-/* buttons */
-.actions{
-    display:flex;
-    gap:14px;
-    margin-top:20px;
-}
-
-.btn{
-    padding:12px 18px;
-    border-radius:14px;
-    text-decoration:none;
-    font-size:13px;
-    font-weight:600;
-}
-
-.call{background:#16a34a;color:#fff;}
-.map{background:#0284c7;color:#fff;}
-
-/* gallery */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-    gap:16px;
-}
-
-.gallery img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    border-radius:22px;
-    transition:.4s;
-}
-
-.gallery img:hover{
-    transform:scale(1.05);
-}
-
-/* quote */
-.quote{
-    margin-top:34px;
-    padding:46px;
-    text-align:center;
-    border-radius:32px;
-    background:rgba(255,255,255,0.04);
-}
-
-.quote-text{
-    font-size:32px;
-    font-weight:800;
-    letter-spacing:-1px;
-}
-
-/* footer */
-.footer{
-    text-align:center;
-    padding:90px 20px 40px;
-}
-
-.footer a{
-    text-decoration:none;
-    font-weight:700;
-    color:#fff;
-    border-bottom:1px solid rgba(255,255,255,0.3);
-    transition:.2s;
-}
-
-.footer a:hover{
-    opacity:0.7;
-}
-
-/* reveal */
-.reveal{
-    opacity:0;
-    transform:translateY(90px) scale(0.96);
-    filter:blur(16px);
-    transition:all 1.2s cubic-bezier(.16,1,.3,1);
-}
-
-.reveal.show{
-    opacity:1;
-    transform:translateY(0) scale(1);
-    filter:blur(0);
-}
-
-/* ===== LIGHT MODE ===== */
-@media (prefers-color-scheme: light){
-
-body{
-    background:#fff;
-    color:#000;
-}
-
-.card,.quote{
-    background:#fff;
-    border:1px solid rgba(0,0,0,0.18);
-    box-shadow:0 12px 35px rgba(0,0,0,0.06);
-}
-
-.chip{
-    background:rgba(0,0,0,0.05);
-    color:#000;
-}
-
-.hero::before{
-    background:linear-gradient(to top, rgba(0,0,0,0.45), transparent 60%);
-}
-
-/* 🔥 FOOTER LINK FIX */
-.footer a{
-    color:#000 !important;
-    border-bottom:1px solid rgba(0,0,0,0.3);
-}
-}
-
-/* mobile */
-@media(max-width:900px){
-    .grid{grid-template-columns:1fr;}
-    .hero{height:480px;}
-}
-
-</style>
+    /* responsive */
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.9rem;
+      }
+      .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+      .hero-content { left: 1.5rem; bottom: 1.5rem; }
+      .hero { height: 460px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="light l1"></div>
-<div class="light l2"></div>
-<div class="light l3"></div>
-<div class="light l4"></div>
+<div class="light-orb orb-1"></div>
+<div class="light-orb orb-2"></div>
+<div class="light-orb orb-3"></div>
+<div class="light-orb orb-4"></div>
 
-<div class="container">
-
-<section class="hero reveal">
-    <img src="banner.png">
+<main class="container">
+  <!-- Hero section with banner.png -->
+  <div class="hero reveal">
+    <img class="hero-img" src="banner.png" alt="Lang Ben Suoi forest retreat Da Lat banner" onerror="this.onerror=null; this.src='https://picsum.photos/id/104/1400/900';">
     <div class="hero-content">
-        <div class="tag">Calm • Romantic • Nature</div>
-        <h1>Lang Ben Suoi</h1>
-        <p>Enjoy fresh air and go camping together.</p>
+      <div class="badge">🌲 Calm · Romantic · Nature</div>
+      <h1>Lang Ben Suoi</h1>
+      <p>Hidden forest sanctuary in the heart of Đà Lạt — breathe fresh mountain air, go camping by the stream, and awaken peaceful emotions.</p>
     </div>
-</section>
+  </div>
 
-<div class="grid">
-
-<div class="card reveal">
-    <h2>About</h2>
-    <p>Hidden forest retreat in Da Lat.</p>
-
-    <div class="chips">
-        <div class="chip">1 Dining Place</div>
-        <div class="chip">9 Rooms</div>
-        <div class="chip">1 Parking Area</div>
-        <div class="chip">1 Wooden Swing</div>
+  <!-- Two column info -->
+  <div class="two-col">
+    <div class="glass-card reveal">
+      <h3>🏡 About the retreat</h3>
+      <p>Lang Ben Suoi is a small retreat nestled among ancient pines, featuring cozy wooden cottages and the gentle sound of a flowing stream. Perfect for finding true relaxation.</p>
+      <div class="chip-list">
+        <span class="chip">🍽️ 1 Dining Place</span>
+        <span class="chip">🛌 9 Cozy Rooms</span>
+        <span class="chip">🅿️ 1 Parking Area</span>
+        <span class="chip">🌿 Wooden Swing</span>
+        <span class="chip">🔥 Bonfire Spot</span>
+      </div>
     </div>
-</div>
 
-<div class="card reveal">
-    <h2>Visit</h2>
-    <p>Xuan Truong, Da Lat, Vietnam</p>
-
-    <div class="actions">
-        <a class="btn call">📞 Call</a>
-        <a class="btn map">🗺 Map</a>
+    <div class="glass-card reveal">
+      <h3>📍 Visit & directions</h3>
+      <p>Xuan Truong, Da Lat City, Lam Dong, Vietnam — just 15 minutes from the city center, immersed in pristine nature.</p>
+      <div class="action-group">
+        <a href="tel:+842633999888" class="btn btn-primary">📞 Call now</a>
+        <a href="https://maps.google.com/?q=Lang+Ben+Suoi+Da+Lat" target="_blank" rel="noopener" class="btn btn-secondary">🗺️ Open Maps</a>
+      </div>
     </div>
-</div>
+  </div>
 
-</div>
-
-<div class="card reveal">
-    <h2>Gallery</h2>
-    <div class="gallery">
-        <img src="anh1.PNG">
-        <img src="anh2.PNG">
-        <img src="anh3.PNG">
-        <img src="anh4.PNG">
-        <img src="anh5.PNG">
+  <!-- Gallery with exactly 5 images: anh1.PNG, anh2.PNG, anh3.PNG, anh4.PNG, anh5.PNG -->
+  <div class="glass-card reveal">
+    <h3>📸 Moments at Lang Ben Suoi</h3>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="anh1.PNG" alt="Lang Ben Suoi view 1" onerror="this.onerror=null; this.src='https://picsum.photos/id/96/400/500';">
+      </div>
+      <div class="gallery-item">
+        <img src="anh2.PNG" alt="Lang Ben Suoi view 2" onerror="this.onerror=null; this.src='https://picsum.photos/id/127/400/500';">
+      </div>
+      <div class="gallery-item">
+        <img src="anh3.PNG" alt="Lang Ben Suoi view 3" onerror="this.onerror=null; this.src='https://picsum.photos/id/13/400/500';">
+      </div>
+      <div class="gallery-item">
+        <img src="anh4.PNG" alt="Lang Ben Suoi view 4" onerror="this.onerror=null; this.src='https://picsum.photos/id/29/400/500';">
+      </div>
+      <div class="gallery-item">
+        <img src="anh5.PNG" alt="Lang Ben Suoi view 5" onerror="this.onerror=null; this.src='https://picsum.photos/id/42/400/500';">
+      </div>
     </div>
-</div>
+    <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.7;">✦ Whispering pines, singing stream — every corner tells its own story.</p>
+  </div>
 
-<div class="quote reveal">
-    <p class="quote-text">“A quiet night, a soft breeze.”</p>
-</div>
+  <!-- Inspirational quote -->
+  <div class="quote-block reveal">
+    <div class="quote-text">
+      “A quiet night, a soft breeze —<br> the stars only whisper to those who listen.”
+    </div>
+    <div style="margin-top: 1rem; opacity: 0.7;">— Soul of Lang Ben Suoi</div>
+  </div>
 
-<div style="height:200px;"></div>
+  <!-- Camping section only (removed Experiences) -->
+  <div class="glass-card reveal" style="margin-top: 0.5rem;">
+    <h3>⛺ Camping & outdoor</h3>
+    <p>Glamping tents, streamside meadows, and bonfire nights. Immerse yourself in nature while still enjoying cozy comforts. Perfect for a peaceful getaway under the stars.</p>
+    <div class="chip-list">
+      <span class="chip">🔥 Bonfire & BBQ</span>
+      <span class="chip">🏕️ Glamping Tents</span>
+      <span class="chip">🌙 Stargazing spots</span>
+    </div>
+  </div>
 
-<footer class="footer reveal">
-    Development & Design by 
-    <a href="https://doanvanvien90.github.io/My-first-website" target="_blank" rel="noopener noreferrer">
-        DevBlzAlphaK1dXD
-    </a>
-</footer>
-
-</div>
+  <footer class="footer reveal">
+    <span>⚡ Development & Design by </span>
+    <a href="https://doanvanvien90.github.io/My-first-website" target="_blank" rel="noopener">DevBlzAlphaK1dXD</a>
+    <div style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.5;">© Lang Ben Suoi — where the forest whispers your name.</div>
+  </footer>
+</main>
 
 <script>
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-        if(e.isIntersecting){
-            e.target.classList.add("show");
+  (function() {
+    // Scroll reveal animation
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
+    reveals.forEach(el => observer.observe(el));
+
+    // Lightbox for gallery images
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        const img = this.querySelector('img');
+        if (!img) return;
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0,0,0,0.92)';
+        overlay.style.backdropFilter = 'blur(24px)';
+        overlay.style.zIndex = '9999';
+        overlay.style.display = 'flex';
+        overlay.style.alignItems = 'center';
+        overlay.style.justifyContent = 'center';
+        overlay.style.cursor = 'pointer';
+        const bigImg = document.createElement('img');
+        bigImg.src = img.src;
+        bigImg.alt = img.alt;
+        bigImg.style.maxWidth = '90%';
+        bigImg.style.maxHeight = '85%';
+        bigImg.style.borderRadius = '28px';
+        bigImg.style.boxShadow = '0 25px 50px rgba(0,0,0,0.6)';
+        bigImg.style.objectFit = 'contain';
+        overlay.appendChild(bigImg);
+        document.body.appendChild(overlay);
+        overlay.addEventListener('click', () => {
+          overlay.style.opacity = '0';
+          setTimeout(() => overlay.remove(), 200);
+        });
+        // Close with ESC key
+        document.addEventListener('keydown', function escHandler(e) {
+          if (e.key === 'Escape') {
+            if (overlay && overlay.parentNode) {
+              overlay.remove();
+              document.removeEventListener('keydown', escHandler);
+            }
+          }
+        });
+      });
     });
-},{threshold:0.18});
 
-document.querySelectorAll(".reveal").forEach(el=>{
-    observer.observe(el);
-});
+    // Mouse parallax effect for hero image
+    const hero = document.querySelector('.hero');
+    const heroImg = document.querySelector('.hero-img');
+    if (hero && heroImg) {
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const moveX = (x - 0.5) * 12;
+        const moveY = (y - 0.5) * 8;
+        heroImg.style.transform = `scale(1.02) translate(${moveX * 0.2}px, ${moveY * 0.15}px)`;
+      });
+      hero.addEventListener('mouseleave', () => {
+        heroImg.style.transform = 'scale(1)';
+      });
+    }
+
+    // Console log for missing images (debug only)
+    const localImages = document.querySelectorAll('img[src*=".PNG"], img[src="banner.png"]');
+    localImages.forEach(img => {
+      img.addEventListener('error', () => {
+        console.log(`[Lang Ben Suoi] File not found: ${img.src}, using placeholder.`);
+      });
+    });
+  })();
 </script>
-
 </body>
 </html>
